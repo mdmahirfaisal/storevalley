@@ -1,63 +1,101 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { ModeToggle } from "../theme_toggle";
-
-interface NavTypes {
-  label: string;
-  icon: string;
-  link: string;
-  template: any;
-}
+import { Button } from "../ui/button";
+import { Card } from "@/components/ui/card";
+import { Avatar } from "@/components/ui/avatar";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import Link from "next/link";
+import { BadgeCheck, LayoutDashboard, LogOut } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import Image from "next/image";
 
 export default function NavigationBar() {
-  const itemRenderer = (item: NavTypes) => (
-    <Link href={item.link} className="flex align-items-center p-menuitem-link">
-      <span className={item.icon} />
-      <span className="mx-2">{item.label}</span>
-    </Link>
-  );
-  const items: NavTypes[] = [
-    {
-      label: "Home",
-      icon: "pi pi-home",
-      link: "/",
-      template: itemRenderer,
-    },
-    {
-      label: "Dashboard",
-      icon: "pi pi-dashboard",
-      link: "/dashboard",
-      template: itemRenderer,
-    },
-  ];
-
   const start = (
-    <img
-      alt="logo"
-      src="https://primefaces.org/cdn/primereact/images/logo.png"
-      className="mr-2 h-10"
-    ></img>
+    <div className="flex gap-1 items-center">
+      <Image
+        height={35}
+        width={35}
+        alt="logo"
+        src="/globe.svg"
+        className="mr-2 bg-white rounded-full"
+      />
+      <h1 className="text-xl font-semibold">Store Valley</h1>
+    </div>
   );
+
   const end = (
     <div className="flex gap-3 items-center">
-      <div>
+      <Button variant="ghost">
         <ModeToggle />
-      </div>
-      <div>
-        <img
-          src="https://primefaces.org/cdn/primereact/images/avatar/amyelsner.png"
-          className="w-10 "
-          alt="avatar"
-        />
-      </div>
+      </Button>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex gap-2 items-center cursor-pointer">
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <i className="truncate text-xs">{"rjmahir.faisal@gmail.com"}</i>
+            </div>
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={"/faisal.jpg"} alt={"Faisal"} />
+              <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+            </Avatar>
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+          side={"bottom"}
+          align="center"
+          sideOffset={4}
+        >
+          <DropdownMenuLabel className="p-0 font-normal">
+            <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+              <Avatar className="h-8 w-8 rounded-lg">
+                <AvatarImage src={"/faisal.jpg"} alt={"Faisal"} />
+                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+              </Avatar>
+              <div className="grid flex-1 text-left text-sm leading-tight">
+                <span className="truncate font-semibold">{"Faisal"}</span>
+                <span className="truncate text-xs">
+                  {"rjmahir.faisal@gmail.com"}
+                </span>
+              </div>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <BadgeCheck />
+              Account
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <LayoutDashboard />
+            <Link href="/dashboard">Dashboard</Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <LogOut />
+            Log out
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
   return (
-    <div className="h-14 flex items-center justify-between bg-gray-500">
+    <Card className="fixed w-full h-14 flex items-center justify-between px-4 !rounded-none">
       <div>{start}</div>
       <div>{end}</div>
-    </div>
+    </Card>
   );
 }

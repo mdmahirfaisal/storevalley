@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import "@/styles/global.css";
@@ -17,28 +16,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "My Ecommerce App",
-  description: "My Ecommerce App built with Next.js",
+  title: "Store Valley",
+  description: "Store Valley Ecommerce App built with Next.js",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Read the theme from cookies, default to 'lara-light-blue' if not set
-  const cookieStore = await cookies();
-  const theme = cookieStore.get("theme")?.value || "lara-light-blue";
-  const themePath = `/themes/${theme}/theme.css`;
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Theme link with a fixed ID for dynamic switching */}
-        <link id="theme-link" rel="stylesheet" href={themePath} />
+        <link
+          rel="icon"
+          href="https://primefaces.org/cdn/primereact/images/logo.png"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        cz-shortcut-listen="true"
       >
         <ThemeProvider
           attribute="class"
@@ -47,7 +44,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <NavigationBar />
-          {children}
+          <main className="pt-10">{children}</main>
         </ThemeProvider>
       </body>
     </html>
