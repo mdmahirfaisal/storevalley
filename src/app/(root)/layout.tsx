@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "@/styles/global.css";
 import NavigationBar from "@/components/navigationBar/navbar";
-import { ThemeProvider } from "@/components/theme_provider";
+import { ThemeProvider } from "@/components/theme/theme_provider";
+import { ClerkThemeProvider } from "@/components/theme/clerk_theme-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Store Valley",
-  description: "Store Valley Ecommerce App built with Next.js",
+  description: "Store Valley an Ecommerce App",
 };
 
 export default function RootLayout({
@@ -41,8 +42,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavigationBar />
-          <main className="pt-10">{children}</main>
+          <ClerkThemeProvider>
+            <NavigationBar />
+            <main className="pt-10">{children}</main>
+          </ClerkThemeProvider>
         </ThemeProvider>
       </body>
     </html>
