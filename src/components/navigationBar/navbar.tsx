@@ -21,16 +21,18 @@ import Image from "next/image";
 
 export default function NavigationBar() {
   const start = (
-    <div className="flex gap-1 items-center">
-      <Image
-        height={35}
-        width={35}
-        alt="logo"
-        src="/globe.svg"
-        className="mr-2 bg-white rounded-full"
-      />
-      <h1 className="text-xl font-semibold">Store Valley</h1>
-    </div>
+    <Link href={"/"}>
+      <div className="flex gap-1 items-center cursor-pointer">
+        <Image
+          height={35}
+          width={35}
+          alt="logo"
+          src="/globe.svg"
+          className="mr-2 bg-white rounded-full"
+        />
+        <h1 className="text-xl font-semibold">Store Valley</h1>
+      </div>
+    </Link>
   );
 
   const end = (
@@ -46,7 +48,10 @@ export default function NavigationBar() {
               <i className="truncate text-xs">{"rjmahir.faisal@gmail.com"}</i>
             </div>
             <Avatar className="h-8 w-8">
-              <AvatarImage src={"/faisal.jpg"} alt={"Faisal"} />
+              <AvatarImage
+                src={"https://storevalley.vercel.app/faisal.jpg"}
+                alt={"Faisal"}
+              />
               <AvatarFallback className="rounded-lg">CN</AvatarFallback>
             </Avatar>
           </div>
@@ -60,7 +65,10 @@ export default function NavigationBar() {
           <DropdownMenuLabel className="p-0 font-normal">
             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={"/faisal.jpg"} alt={"Faisal"} />
+                <AvatarImage
+                  src={"https://storevalley.vercel.app/faisal.jpg"}
+                  alt={"Faisal"}
+                />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">

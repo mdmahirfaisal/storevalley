@@ -28,14 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="icon"
-          href="https://primefaces.org/cdn/primereact/images/logo.png"
-        />
+        <link rel="icon" href="/globe.svg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        cz-shortcut-listen="true"
+        shortcut-listen="true"
+        suppressHydrationWarning={true}
       >
         <ThemeProvider
           attribute="class"

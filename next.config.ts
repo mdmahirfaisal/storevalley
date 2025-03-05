@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "*",
         port: "", // Leave empty unless a specific port is used
       },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        port: "", // Leave empty unless a specific port is used
+      },
     ],
   },
 };
