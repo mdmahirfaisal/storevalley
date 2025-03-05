@@ -3,8 +3,6 @@ import { currentUser } from "@clerk/nextjs/server";
 
 export default async function UserProfilePage() {
   const user = await currentUser();
-  console.log("UserProfilePage", user);
-
   if (!user) return <div>Not signed in</div>;
 
   return (

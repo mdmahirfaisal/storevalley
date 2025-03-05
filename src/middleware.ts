@@ -3,7 +3,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // const isProtectedRoute = createRouteMatcher(["/user-profile"]);
 const isPublickRoute = createRouteMatcher([
-  "/",
+  "/(.*)",
   "/sign-up(.*)",
   "/sign-in(.*)",
   "/user-profile(.*)",
